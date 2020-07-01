@@ -1,0 +1,37 @@
+#####################################################################################
+# Product: ADempiere gRPC Business Data Server                                      #
+# Copyright (C) 2020 Edwin Betancourt                                               #
+# Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      #
+# This program is free software: you can redistribute it and/or modify              #
+# it under the terms of the GNU General Public License as published by              #
+# the Free Software Foundation, either version 3 of the License, or                 #
+# (at your option) any later version.                                               #
+# This program is distributed in the hope that it will be useful,                   #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of                    #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     #
+# GNU General Public License for more details.                                      #
+# You should have received a copy of the GNU General Public License                 #
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.            #
+#####################################################################################
+version: "2.1"
+
+services:
+  business-grpc-server:
+    container_name: Business-GRPC-Sever
+    build:
+      context: ../business-server/
+      dockerfile: ./Dockerfile
+    volumes:
+      - "../.:/opt/Apps/ADempiere-gRPC-Server/"
+      - "./business.yaml:/opt/Apps/ADempiere-gRPC-Server/bin/business_connection.yaml"
+    stdin_open: true
+    tty: true
+    labels:
+      - type=grpc-server
+      - app=business-grpc-server
+      - maintainer=EdwinBetanc0urt@outlook.com
+    environment:
+      - SERVER_PORT=50052
+    ports:
+      - 50052:50052
+    network_mode: bridge
