@@ -6,3 +6,8 @@ Donwload https://github.com/erpcya/adempiere-gRPC-Server/releases/latest uncompr
 ```shell
 docker-compose up
 ```
+
+
+@Deprecated
+
+Replace with https://github.com/adempiere/adempiere-grpc-all-in-one-docker
